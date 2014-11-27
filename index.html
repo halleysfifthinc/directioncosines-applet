@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="webapp" lang="en-us">
+	<head>
+		<title>Direction cosine table calculator</title>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/main.css" charset="utf-8">
+		<link rel="stylesheet" href="css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+	</head>
+	<body class="container-fluid">
+		<div class="panel panel-default main">
+			<div class="panel-title panel-heading">Direction cosine table calculator</div>
+			<div class="panel-body" ng-controller="RotationController as rotation">
+				<div class="rotations">
+				<div class="rotbar" ng-repeat="axis in rotation.rotations track by $index">
+		      <div class="btn-group" role="group" aria-label="...">
+		        <button type="button" class="btn btn-default" ng-class="{ active:rotation.isAxis($index, 1) }"ng-click="rotation.setAxis($index, 1)">First Axis</button>
+		        <button type="button" class="btn btn-default" ng-class="{ active:rotation.isAxis($index, 2) }" ng-click="rotation.setAxis($index, 2)">Second Axis</button>
+		        <button type="button" class="btn btn-default" ng-class="{ active:rotation.isAxis($index, 3) }" ng-click="rotation.setAxis($index, 3)">Third Axis</button>
+		      </div>
+					<button type="button" class="btn btn-default" ng-click="rotation.removeRot($index)">
+					  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					</button>
+				</div>
+				<button type="button" class="add btn btn-primary" ng-click="rotation.addRot()">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				</button>
+			  </div>
+				<div class="results panel panel-default table-responsive">
+					<div class="panel-heading">Rotation matrix from &ecirc; to &ecirc;'</div>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th><sup>&ecirc;</sup>R<sup>&ecirc;'</sup></th>
+								<th>&ecirc;'<sub>1</sub></th>
+								<th>&ecirc;'<sub>2</sub></th>
+								<th>&ecirc;'<sub>3</sub></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>&ecirc;<sub>1</sub></th>
+								<td mathjax-bind="rotation.results[0][0]"></td>
+								<td mathjax-bind="rotation.results[0][1]"></td>
+								<td mathjax-bind="rotation.results[0][2]"></td>
+							</tr>
+							<tr>
+								<th>&ecirc;<sub>2</sub></th>
+								<td mathjax-bind="rotation.results[1][0]"></td>
+								<td mathjax-bind="rotation.results[1][1]"></td>
+								<td mathjax-bind="rotation.results[1][2]"></td>
+							</tr>
+							<tr>
+								<th>&ecirc;<sub>3</sub></th>
+								<td mathjax-bind="rotation.results[2][0]"></td>
+								<td mathjax-bind="rotation.results[2][1]"></td>
+								<td mathjax-bind="rotation.results[2][2]"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+  	</div>
+	  <script charset="utf-8" type="text/javascript" src="scripts/angular.min.js"></script>
+		<script type="text/javascript" src="scripts/nerdamer.combined.min.js"></script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				imageFont:null,
+				skipStartupTypeset: true,
+				messageStyle: "none",
+				"HTML-CSS": {
+					showMathMenu: false
+				}
+			});
+		</script>
+		<script type="text/javascript" src="mathjax/MathJax.js?config=TeX-AMS_HTML"></script>
+		<script type="text/javascript" src="scripts/app.js"></script>
+
+	</body>
+</html>
